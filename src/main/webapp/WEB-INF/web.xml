@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    id="WebApp_ID" version="2.5">
+    <display-name>Archetype Created Web Application</display-name>
+    
+	<!-- 读取spring配置文件 -->
+	<context-param><!-- 应用的ServletContext上下文初始化参数。参数名在整个Web应用中必须是惟一的。 -->
+		<param-name>contextConfigLocation</param-name><!-- contextConfigLocation这个参数名,spring定义好的，会去加载spring的配置文件 -->
+		<param-value>classpath:conf/spring-core*.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+  	<!-- springMVC核心配置 -->
+  	<servlet>
+  		<servlet-name>spring</servlet-name>
+  		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  		<init-param>
+  			<param-name>contextConfigLocation</param-name>
+            <param-value>classpath:conf/spring-mvc*.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>/</url-pattern><!-- 会匹配到类似“/welcome”这样的路径型url，不会匹配到模式为*.jsp这样的后缀型url”。 -->
+    </servlet-mapping>
+</web-app>
