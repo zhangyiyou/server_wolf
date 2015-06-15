@@ -7,7 +7,7 @@
 
 	<context:component-scan base-package="com.wolf.controller"></context:component-scan>
 
-	<!-- 对模型视图添加前后缀 -->
+	<!-- 对模型视图添加前后缀   view是用什么显示，这里是jsp， InternalResourceViewResolver为UrlBasedViewResolver的子类-->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/view/"
