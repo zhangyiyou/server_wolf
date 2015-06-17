@@ -11,7 +11,7 @@
 		
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-	<context:component-scan base-package="com.jf.fenqigo.backend.carloan.ws.service.impl"/>
+	<!-- <context:component-scan base-package="com.jf.fenqigo.backend.carloan.ws.service.impl"/> -->
  	
 	<!-- 依赖远程webservice的代理  -->
 	<!-- <jaxws:client id="loanServiceClient" address="http://123.57.48.237:7082/webservice/loanService" serviceClass="com.macrosky.webservice.biz.LoanService">
@@ -34,7 +34,7 @@
 	</jaxws:server> -->
 	
 	<!-- 这里的地址很重要，客户端需要通过这个地址来访问WebService -->
-	<jaxrs:server>
+	<jaxrs:server id="restServiceContainer" address="/rest">
 		<jaxrs:serviceBeans>
 			<ref bean="userInfoService"/>
 		</jaxrs:serviceBeans>
