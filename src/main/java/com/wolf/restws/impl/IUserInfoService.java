@@ -23,7 +23,7 @@ import com.wolf.restws.dto.Users;
  * @Path：定义资源基 URI。由上下文根和主机名组成，资源标识符类似于
  *             http://localhost:8080/RESTful/rest/hello。
  * @GET：这意味着以下方法可以响应 HTTP GET 方法。
- * @Produces：以纯文本方式定义响应内容 MIME 类型。
+ * @Produces：该标签标注资源类或方法返回的 MIME 类型 , 也就是资源方法产生并且返回给客户端的响应消息的类型。。
  * @Context： 使用该注释注入上下文对象，比如 Request、Response、UriInfo、ServletContext 等。
  * @Path("{contact ")：这是 @Path 注释，与根路径 “/contacts” 结合形成子资源的 URI。
  * @PathParam("contact")：该注释将参数注入方法参数的路径，在本例中就是联系人 id。其他可用的注释有 @FormParam、@QueryParam
@@ -48,6 +48,7 @@ public interface IUserInfoService {
 
 	@GET
 	@Path(value = "/bean/{id}")
+//	@Consumes(value ={ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Produces(value = { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public User getBean(@PathParam(value = "id") int id);
 
@@ -72,7 +73,7 @@ public interface IUserInfoService {
 
 	@PUT
 	@Path(value = "/putData/{id}")
-	@Consumes(value = MediaType.APPLICATION_XML)
+	@Consumes(value = MediaType.APPLICATION_XML)//该标签标注资源类或方法可以接受的请求消息的类型，也就是客户端发送的请求中可以包含的 Http Entity 的类型
 	public User putData(@PathParam("id") int id, User user);
 
 	@DELETE

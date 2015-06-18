@@ -32,7 +32,7 @@ import com.wolf.restws.impl.IUserInfoService;
  */
 @Path(value = "UserInfoService")
 public class UserInfoService implements IUserInfoService{
-	@Context
+	@Context//该标签标注资源请求或者响应的上下文实例
 	private UriInfo uriInfo;//获取URI中的信息
 	@Context
 	private Request req;
@@ -66,7 +66,7 @@ public class UserInfoService implements IUserInfoService{
 	@GET
 	@Produces(value = MediaType.TEXT_PLAIN)
 	@Path(value = "/request/{param}")
-	public String doRequest(String param, HttpServletRequest request,
+	public String doRequest(@PathParam(value = "param")String param, HttpServletRequest request,
 			HttpServletResponse response) {
 		System.out.println(request);
 		System.out.println(response);
@@ -79,9 +79,10 @@ public class UserInfoService implements IUserInfoService{
 
 	@GET
 	@Path(value = "/bean/{id}")
+//	@Consumes(value ={ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Produces(value = { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public User getBean(int id) {
-		System.out.println("####getBean#####");
+	public User getBean(@PathParam(value = "id")int id) {
+		System.out.println("####getBean##### == zty");
 	    System.out.println("id:" + id);
 	    System.out.println("Method:"+req.getMethod());
 	    System.out.println("uri:"+uriInfo.getPath());
@@ -137,7 +138,7 @@ public class UserInfoService implements IUserInfoService{
 	@PUT
 	@Path(value = "/putData/{id}")
 	@Consumes(value = MediaType.APPLICATION_XML)
-	public User putData(int id, User user) {
+	public User putData(@PathParam("id")int id, User user) {
 		System.out.println("#####putData#####");
         System.out.println(user);
         user.setId(id);
@@ -150,7 +151,7 @@ public class UserInfoService implements IUserInfoService{
 
 	@DELETE
 	@Path(value = "/removeData/{id}")
-	public void delData(int id) {
+	public void delData(@PathParam("id")int id) {
 		 System.out.println("#######deleteData#######" + id);
 	}
 	

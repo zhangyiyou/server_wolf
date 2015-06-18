@@ -22,8 +22,15 @@
 		address="/CarBUSService" >
 	</jaxws:endpoint> -->     
     <bean id="userInfoService" class="com.wolf.restws.UserInfoService">
-    
     </bean>
+<!--     
+  	<bean id="webClient" class="org.apache.cxf.jaxrs.client.WebClient" factory-method="create">
+        <constructor-arg type="java.lang.String" value="http://localhost:8080/server_wolf/services/rest/" />
+    </bean>
+	<bean id="restSampleBean" class="org.apache.cxf.jaxrs.client.JAXRSClientFactory" factory-method="create">
+    	<constructor-arg type="java.lang.String" value="http://localhost:8080/server_wolf/services/rest/" />
+    	<constructor-arg type="java.lang.Class" value="com.wolf.restws.impl.UserInfoService" />
+    </bean> -->
 <!--<jaxws:server id="restServiceContainer" address="/rest">
 		<jaxws:serviceBean>
 			<ref bean="userInfoService"/>
